@@ -62,7 +62,7 @@ let nix = import "./nix-interop/nix.ncl" in
             rm -f %{target}
             echo "Regenerating %{target}"
 	    target_dir=$(dirname %{target})
-	    test "${target_dir}" != "." && mkdir -p "${target_dir}"
+	    test -d "${target_dir}" || mkdir -p "${target_dir}"
             %{copy_command} %{file_in_store} %{target}
           "%
         in
